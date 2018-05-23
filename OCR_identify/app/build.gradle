@@ -1,0 +1,28 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion Integer.parseInt(project.CompileSdkVersion)
+    buildToolsVersion project.BuildToolsVersion
+
+    defaultConfig {
+        applicationId "com.ocr"
+        minSdkVersion Integer.parseInt(project.MinSdkVersion)
+        targetSdkVersion Integer.parseInt(project.TargetSdkVersion)
+        versionCode Integer.parseInt(project.VersionCode)
+        versionName project.VersionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('libs/ocr-sdk.jar')
+    compile project(':identify')
+    compile 'com.yanzhenjie:permission:1.1.0' // 权限检查
+}
